@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <title>Fruit Sensor Web</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello from Fruit Sensor!</h1>
-  <p>This is your first webpage connected with GitHub + Netlify.</p>
 
-  <!-- ปุ่มไปหน้าใหม่ -->
-  <button onclick="window.location.href='page2.html'">ไปหน้าต่อไป ➜</button>
+  <div class="container">
+    <!-- รูปผลไม้ด้านบน -->
+    <img src="https://cdn.pixabay.com/photo/2016/02/23/17/51/fruits-1213040_1280.png" class="fruit-img" alt="Fruits">
 
-  <script src="script.js"></script>
+    <!-- ปุ่มหลัก -->
+    <div class="button-group">
+      <button class="btn neon-btn start" onclick="window.location.href='page2.html'">Start</button>
+      <button class="btn neon-btn info" onclick="window.location.href='info.html'">Information</button>
+    </div>
+  </div>
+
 </body>
 </html>
