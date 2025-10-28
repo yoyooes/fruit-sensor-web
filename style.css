@@ -5,16 +5,17 @@ body {
   padding: 0;
   font-family: "Kanit", sans-serif;
   background: radial-gradient(circle at top, #fefefe 0%, #d8e2ff 100%);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
 }
 
-.container {
+/* ----- รูปด้านบน ----- */
+header {
+  width: 100%;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .fruit-img {
@@ -30,7 +31,23 @@ body {
   100% { transform: translateY(0px); }
 }
 
-/* ปุ่มแบบนีออน */
+/* ----- ปุ่มกลาง ----- */
+.main-buttons {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ----- ปุ่มล่างสุด ----- */
+.footer-buttons {
+  margin-top: -60px;   /* ขยับขึ้นมาใกล้ปุ่ม Start */
+  margin-bottom: 60px; /* เว้นล่างเล็กน้อยให้สวย */
+}
+
+
+/* ----- สไตล์ปุ่มนีออน ----- */
 .neon-btn {
   position: relative;
   background: none;
@@ -79,9 +96,4 @@ body {
   color: white;
   box-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
   background: currentColor;
-}
-
-/* ปุ่มด้านล่างสุด */
-.bottom-btn {
-  margin-bottom: 30px;
 }
