@@ -3,26 +3,22 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
   font-family: "Kanit", sans-serif;
-  background: radial-gradient(circle at top, #fefefe 0%, #d8e2ff 100%);
-  min-height: 100vh;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  color: white;
 }
 
-/* ----- รูปด้านบน ----- */
-header {
-  width: 100%;
+/* 🔹 แถวอีโมจิผลไม้ด้านบน */
+.emoji-row {
+  font-size: 60px;
+  margin-top: 40px;
   text-align: center;
-  margin-top: 20px;
-}
-
-.fruit-img {
-  width: 60%;
-  max-width: 400px;
   animation: float 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
 }
 
 @keyframes float {
@@ -31,69 +27,64 @@ header {
   100% { transform: translateY(0px); }
 }
 
-/* ----- ปุ่มกลาง ----- */
-.main-buttons {
-  flex-grow: 1;
+/* 🔹 กล่องปุ่ม */
+.center-buttons {
+  text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  margin-top: 80px;
 }
 
-/* ----- ปุ่มล่างสุด ----- */
-.footer-buttons {
-  margin-top: -60px;   /* ขยับขึ้นมาใกล้ปุ่ม Start */
-  margin-bottom: 60px; /* เว้นล่างเล็กน้อยให้สวย */
-}
-
-
-/* ----- สไตล์ปุ่มนีออน ----- */
-.neon-btn {
+/* 🔹 ปุ่มนีออน */
+.btn {
   position: relative;
   background: none;
-  color: white;
   border: 2px solid;
   border-radius: 30px;
-  padding: 14px 40px;
+  padding: 15px 40px;
   font-size: 20px;
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin: 10px 0;
+  font-weight: bold;
   transition: 0.3s;
   overflow: hidden;
   width: 220px;
-  font-weight: bold;
 }
 
 .neon-btn.start {
   border-color: #00c6ff;
   color: #00c6ff;
-  box-shadow: 0 0 20px #00c6ff50;
+  box-shadow: 0 0 20px #00c6ff70;
 }
 
 .neon-btn.info {
   border-color: #ffcc00;
   color: #ffcc00;
-  box-shadow: 0 0 20px #ffcc0040;
+  box-shadow: 0 0 20px #ffcc0070;
+  margin-top: 15px; /* ห่างจากปุ่ม Start เล็กน้อย */
 }
 
-.neon-btn::before {
+/* เอฟเฟกต์แสงวิ่งผ่าน */
+.btn::before {
   content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: 0.5s;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: 0.6s;
 }
 
-.neon-btn:hover::before {
+.btn:hover::before {
   left: 100%;
 }
 
-.neon-btn:hover {
+.btn:hover {
   color: white;
-  box-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
   background: currentColor;
+  box-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
 }
