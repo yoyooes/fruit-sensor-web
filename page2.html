@@ -2,13 +2,22 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>Start Page</title>
+  <title>Select Fruit</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🍌 Welcome to Fruit Sensor System!</h1>
-  <p>หน้านี้ไว้แสดงค่าหรือข้อมูลหลักของโครงงาน</p>
 
-  <button class="btn info-btn" onclick="window.location.href='index.html'">⬅ กลับหน้าแรก</button>
+  <div class="fruit-page">
+    <h1 class="page-title">เลือกผลไม้ 🍇</h1>
+
+    <div class="fruit-buttons">
+      <button class="btn neon-btn banana">Banana 🍌</button>
+      <button class="btn neon-btn mango">Mango 🥭</button>
+      <button class="btn neon-btn durian">Durian 🌰</button>
+    </div>
+
+    <button class="btn back-btn" onclick="window.location.href='index.html'">⬅ กลับหน้าแรก</button>
+  </div>
+
 </body>
 </html>

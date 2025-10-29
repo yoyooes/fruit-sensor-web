@@ -88,3 +88,61 @@ body {
   background: currentColor;
   box-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
 }
+/* ===== หน้าเลือกผลไม้ ===== */
+.fruit-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #ffffffcc;
+  text-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+
+/* กล่องรวมปุ่มผลไม้ */
+.fruit-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* ปุ่มแต่ละผลไม้ */
+.neon-btn.banana {
+  border-color: #ffe600;
+  color: #ffe600;
+  box-shadow: 0 0 25px #ffe60070;
+}
+
+.neon-btn.mango {
+  border-color: #ff9900;
+  color: #ff9900;
+  box-shadow: 0 0 25px #ff990070;
+}
+
+.neon-btn.durian {
+  border-color: #6eff00;
+  color: #6eff00;
+  box-shadow: 0 0 25px #6eff0070;
+}
+
+/* ปุ่มกลับ */
+.back-btn {
+  margin-top: 40px;
+  border-color: #ccc;
+  color: #ccc;
+  box-shadow: 0 0 20px #ccc5;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  color: black;
+  background-color: #ccc;
+}
