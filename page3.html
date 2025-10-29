@@ -1,27 +1,115 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Fruit Details</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  <div class="detail-shell">
+    <h1 class="page-title" id="fruitTitle">ข้อมูลผลไม้</h1>
 
-  <div class="fruit-detail">
-    <h1 class="page-title">🍌 ข้อมูลผลไม้</h1>
-    <p class="fruit-text">
-      หน้านี้สามารถใช้แสดงข้อมูลของผลไม้ที่คุณเลือกได้ เช่น<br>
-      - ประเภทผลไม้<br>
-      - ระดับความสุก<br>
-      - ค่าที่วัดจากเซนเซอร์ (ADC / ความต้านทาน)<br><br>
-      หรือจะปรับให้แสดงกราฟหรือรูปภาพของผลไม้จริงก็ได้!
-    </p>
+    <div id="fruitMeta" class="fruit-meta">–</div>
+
+    <div class="status-row">
+      <div class="status-card">
+        <div class="status-label">Ripeness Index</div>
+        <div class="status-value" id="ripenessValue">–</div>
+      </div>
+      <div class="status-card">
+        <div class="status-label">Status</div>
+        <div class="pill" id="statusPill">–</div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="ripenessChart"></canvas>
+    </div>
 
     <div class="detail-buttons">
       <button class="btn back-btn" onclick="window.location.href='page2.html'">⬅ กลับไปเลือกผลไม้</button>
-      <button class="btn neon-btn start" onclick="window.location.href='index.html'">🏠 กลับหน้าแรก</button>
+      <button class="btn neon-btn start" onclick="window.location.href='index.html'">🏠 หน้าแรก</button>
     </div>
   </div>
 
+  <script>
+    // 1) อ่านพารามิเตอร์ ?fruit=
+    const params = new URLSearchParams(location.search);
+    const fruit = (params.get('fruit') || 'banana').toLowerCase();
+
+    // 2) กำหนดข้อมูลเฉพาะของแต่ละผลไม้
+    const FRUIT_INFO = {
+      banana: {
+        name: 'Banana 🍌',
+        color: '#ffe600',
+        note: 'กล้วยสุกเร็ว เหมาะกินสด/สมูทตี้ เก็บอุณหภูมิห้อง หลีกเลี่ยงแดด',
+        threshold: 70,
+        series: [20,30,35,42,50,58,65,70,78,84,90],
+      },
+      mango: {
+        name: 'Mango 🥭',
+        color: '#ff9900',
+        note: 'มะม่วงสุกปานกลาง เหมาะกินสด/ของหวาน แช่เย็นช่วงสุกช้า',
+        threshold: 65,
+        series: [15,22,28,36,45,55,63,69,73,78,82],
+      },
+      durian: {
+        name: 'Durian 🌰',
+        color: '#6eff00',
+        note: 'ทุเรียนสุกช้า ควรสังเกตกลิ่น/ความนิ่ม เหมาะกินช่วงเนื้อครีม',
+        threshold: 70,
+        series: [10,16,20,30,40,52,60,68,72,79,85],
+      }
+    };
+
+    // 3) เลือกโปรไฟล์
+    const P = FRUIT_INFO[fruit] || FRUIT_INFO.banana;
+
+    // 4) ตั้งหัวเรื่อง + คำอธิบายย่อ
+    document.getElementById('fruitTitle').textContent = `ข้อมูลผลไม้ – ${P.name}`;
+    document.getElementById('fruitMeta').textContent = P.note;
+
+    // 5) ค่า index ล่าสุด + สถานะสุก/ไม่สุก
+    const latest = P.series[P.series.length - 1];
+    document.getElementById('ripenessValue').textContent = `${latest}`;
+
+    const pill = document.getElementById('statusPill');
+    const isRipe = latest >= P.threshold;
+    pill.textContent = isRipe ? 'กำลังสุก' : 'ยังไม่สุก';
+    pill.classList.remove('ok', 'warn');
+    pill.classList.add(isRipe ? 'ok' : 'warn');
+
+    // 6) วาดกราฟเฉพาะของผลไม้นั้น
+    const labels = Array.from({length: P.series.length}, (_, i) => `t${i}`);
+    const ctx = document.getElementById('ripenessChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: `${P.name} – Ripeness Index`,
+          data: P.series,
+          tension: 0.25,
+          fill: true,
+          backgroundColor: P.color + '22',
+          borderColor: P.color,
+          borderWidth: 3,
+          pointRadius: 3,
+          pointHoverRadius: 5
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: '#ffffff' } },
+          tooltip: { enabled: true }
+        },
+        scales: {
+          x: { ticks: { color: '#cfe3ff' }, grid: { color: 'rgba(255,255,255,0.08)' } },
+          y: { suggestedMin: 0, suggestedMax: 100, ticks: { color: '#cfe3ff' }, grid: { color: 'rgba(255,255,255,0.08)' } }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
